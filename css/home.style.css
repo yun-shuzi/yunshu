@@ -1,0 +1,416 @@
+/* 重置 */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* 页面字体与背景 */
+body{
+  font-family: "Noto Serif SC", serif;
+  background:#F7F6F2;
+  color:#1F1F1F;
+  line-height:1.6;
+}
+
+/*  跳转index页面效果 */
+.fade-in{
+  animation:fadeInPage 1s ease forwards;
+  opacity:0;
+}
+
+
+@keyframes fadeInPage{
+  to{
+    opacity:1;
+  }
+}
+/*  导航  */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:30px 80px;
+  background:rgba(247,246,242,0.9);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+nav .logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#1F1F1F;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:40px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#333;
+  transition:0.3s;
+}
+
+nav ul li a:hover{
+  color:#7C6CF0;
+}
+
+/* 首页Hero */
+
+.hero-title{
+  font-size:80px;
+  letter-spacing:6px;
+  margin-bottom:20px;
+}
+
+.hero-subtitle{
+  font-size:20px;
+  margin-bottom:40px;
+  color:#666;
+}
+
+.hero-enter{
+  font-size:18px;
+  color:#666;
+  text-decoration:none;
+  border-bottom:1px solid #ccc;
+  padding-bottom:3px;
+  transition:all 0.3s;
+}
+
+.hero-enter:hover{
+  color:#7C6CF0;
+  border-color:#7C6CF0;
+}
+
+/* Section 标题 */
+section h2{
+  text-align:center;
+  font-size:36px;
+  margin:60px 0 40px 0;
+  color:#1F1F1F;
+}
+
+/* 卡片 */
+.cards{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+  padding:0 40px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  width:250px;
+  transition:0.3s;
+}
+
+.card img{
+  width:100%;
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 20px rgba(124,108,240,0.2);
+}
+
+/* 博客文章 */
+.blog-posts{
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  max-width:700px;
+  margin:0 auto 60px auto;
+}
+
+.blog-posts article{
+  padding:20px;
+  border-left:3px solid #7C6CF0;
+  background:white;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.blog-posts article:hover{
+  box-shadow:0 4px 12px rgba(124,108,240,0.2);
+}
+
+.blog-posts article span{
+  display:block;
+  font-size:14px;
+  color:#666;
+  margin-bottom:10px;
+}
+
+/* About */
+#about{
+  max-width:700px;
+  margin:0 auto 60px auto;
+  text-align:center;
+  padding:0 20px;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:40px 20px;
+  font-size:14px;
+  color:#999;
+  border-top:1px solid #E0E0E0;
+}
+/* ========== Hero动画 ========== */
+.hero-container{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  animation:fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= 刀最终修复版 ================= */
+
+/* 刀容器 */
+.blade-container{
+  position:relative;
+  width:260px;
+  height:8px;
+  margin:15px 0 15px;
+  animation:float 3s ease-in-out infinite;
+}
+
+/* 浮动 */
+@keyframes float{
+  0%{ transform:translateY(0);}
+  50%{ transform:translateY(-3px);}
+  100%{ transform:translateY(0);}
+}
+
+/* 刀柄（不动） */
+.handle{
+  position:absolute;
+  left:0;
+  width:22%;
+  height:100%;
+  background:linear-gradient(to right,#2b2b2b,#111);
+  border-radius:2px;
+  z-index:3;
+}
+
+/* 刀鞘（移动） */
+.sheath{
+  position:absolute;
+  left:22%;
+  width:78%;
+  height:100%;
+  background:linear-gradient(to right,#2a2a2a,#111);
+  z-index:2;
+
+  clip-path:polygon(
+    0% 0%,
+    95% 0%,
+    100% 50%,
+    95% 100%,
+    0% 100%
+  );
+
+  transition:transform 0.6s ease;
+}
+
+/* 刀刃 */
+.blade{
+  position:absolute;
+  left:15%;
+  width:78%;
+  height:100%;
+  background:linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #dddddd 30%,
+    #aaaaaa 60%,
+    #666666 100%
+  );
+  z-index:1;
+  overflow:hidden;
+  opacity:0.9;
+}
+/* 刀光 */
+.blade::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:25%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.9),
+    transparent
+  );
+}
+
+/* 出鞘效果 */
+.blade-container.active .sheath{
+  transform:translateX(40px);
+}
+
+.blade-container.active .blade{
+  opacity:1;
+}
+
+.blade-container.active .blade::after{
+  animation:shine 0.6s forwards;
+}
+
+
+/* 刀光 */
+@keyframes shine{
+  0%{
+    left:-100%;
+  }
+  100%{
+    left:120%;
+  }
+}
+
+/* 裂痕 */
+.cut{
+  position:fixed;
+  left:0;
+  top:55%;
+  width:0%;
+  height:80px;
+  z-index:1000;
+
+  clip-path: path("M0,40 L230,25 L1286,20 L1500,15 L1750,50 L1500,70 L600,50 L200,60 L0,45 Z");
+ /*控制裂痕的速度*/
+  transition: width 0.6s cubic-bezier(0.65,0,0.35,1);
+
+
+  max-width:4000px;
+}
+body.phase-1 .cut{
+  transform:scaleX(1);
+}
+
+/* 通过为对象调整Z顺序，用白扩散隔绝黑割，避免对抗锯 */
+.cut.black{
+  background:#000;
+  z-index: 900;
+}
+
+.cut.cream{
+  background:#F7F6F2;
+  opacity:0;
+  z-index: 1000;
+}
+/* 扩散层 */
+.spread{
+  position:fixed;
+  left:0;
+  width:100%;
+  height:0%;
+  z-index:900;
+ /*控制扩散速度*/
+  transition:height 1.1s cubic-bezier(0.7,0,0.2,1);
+}
+
+/* 黑 */
+.spread.black{
+  top:0;
+  background:#000;
+  z-index: 900;
+}
+
+/* 米 */
+.spread.cream{
+  top:0;
+  background:#F7F6F2;
+  z-index: 950;
+}
+
+/* 下半 */
+.spread::after{
+  content:"";
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:0%;
+  background:inherit;
+
+  transition:height 1.1s cubic-bezier(0.7,0,0.2,1);
+}
+
+/*====动画控制====*/
+
+/* 阶段1：黑裂痕 */
+body.phase-1 .cut.black{
+  width:100%;
+}
+
+/* 阶段2：黑扩散 */
+body.phase-2 .spread.black{
+  height:60%;
+}
+body.phase-2 .spread.black::after{
+  height:40%;
+}
+
+/* 阶段3：米裂痕 */
+body.phase-3 .cut.cream{
+  width:100%;
+  opacity:1;
+}
+
+/* 阶段4：米扩散 */
+body.phase-4 .spread.cream{
+  height:60%;
+}
+body.phase-4 .spread.cream::after{
+  height:40%;
+}
+
+
+/*===文字行为===*/
+
+/* ENTER 消失 */
+body.phase-2 .hero-enter{
+  opacity:0;
+  transform:translateY(10px);
+}
+
+/* 黑扩散时文字变米色 */
+body.phase-2 .hero-title,
+body.phase-2 .hero-subtitle{
+  color:#F7F6F2;
+}
+
+/* 过渡更柔 */
+.hero-title,
+.hero-subtitle,
+.hero-enter{
+  transition:all 0.6s ease;
+}
